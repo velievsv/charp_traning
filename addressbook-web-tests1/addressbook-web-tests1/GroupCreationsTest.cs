@@ -49,6 +49,7 @@ namespace WebAddressbookTest
             GroupData group = new GroupData("NameOfTheGroup");
             group.Header = "NameOfHeader";
             group.Footer = "NameOfFotter";
+            FillGroupField(group);
             SubmitGroupCreation();
             ReturnToGroupPage();
             Logout();
@@ -79,7 +80,7 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
-          //  driver.FindElement(By.Name("group_footer")).SendKeys(group.footer);
+            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
         }
 
         private void InitNewGroupCreation()
