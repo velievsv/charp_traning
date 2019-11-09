@@ -4,20 +4,21 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 
-
 namespace WebAddressbookTest
 {
     [TestFixture]
-    public class ContactTest : TestBase
+    public class GroupRemoval : TestBase
     {
+       
+
         [Test]
-        public void TheContactTest()
+        public void GroupRemovalTest()
         {
             GoToHomePage();
             Login(new AccountData("admin","secret"));
-            GotoAddNewContactPage();
-            FillContactForm(new ContactData("Eto","Pobeda"));
-            InitNewContact();
+            GoToGroupePage();
+            SelectGroupCheckbox(1);
+            DeleteGroup();
             BackToHomePage();
         }
     }
