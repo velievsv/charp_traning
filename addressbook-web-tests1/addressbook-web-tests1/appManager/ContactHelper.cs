@@ -9,11 +9,18 @@ namespace WebAddressbookTest
 { 
     public class ContactHelper : HelperBase
     {
-    public ContactHelper(IWebDriver driver) : base(driver)
+    public ContactHelper(ApplicationManager manager) : base(manager)
     {
-
+           
     }
-        public void FillContactForm(ContactData contact)
+        public ContactHelper CreateContact()
+        {
+            manager.Navigator.GotoAddNewContactPage();
+            FillContactForm(new ContactData("Eto", "Pobeda"));
+            InitNewContact();
+            return this;
+        }
+        public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -21,7 +28,7 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("middlename")).Click();
             driver.FindElement(By.Name("middlename")).Clear();
             driver.FindElement(By.Name("middlename")).SendKeys(contact.Middlename);
-            driver.FindElement(By.Name("lastname")).Click();
+            /*driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
             driver.FindElement(By.Name("nickname")).Click();
@@ -76,11 +83,13 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("phone2")).SendKeys(contact.Phone2);
             driver.FindElement(By.Name("notes")).Click();
             driver.FindElement(By.Name("notes")).Clear();
-            driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);
+            driver.FindElement(By.Name("notes")).SendKeys(contact.Notes); */
+            return this;
         }
-        public void InitNewContact()
+        public ContactHelper InitNewContact()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
     }
 }

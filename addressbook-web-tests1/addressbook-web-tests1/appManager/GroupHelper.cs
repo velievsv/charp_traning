@@ -10,16 +10,32 @@ namespace WebAddressbookTest
     public class GroupHelper : HelperBase
     {
 
-        public GroupHelper(IWebDriver driver) : base(driver)
+        public GroupHelper(ApplicationManager manager) 
+                                                : base(manager)
         {
 
         }
-     
-        public void InitNewGroupCreation()
+
+       public GroupHelper CreateGroup(GroupData group)
+        {
+            manager.Navigator.GoToGroupePage();
+            InitNewGroupCreation();
+            FillGroupField(group);
+            SubmitGroupCreation();
+        return this;
+        }
+        public GroupHelper DeleteGroups()
+        {
+            SelectGroupCheckbox(1);
+            DeleteGroup();
+            return this;
+        }
+        public GroupHelper InitNewGroupCreation()
         {
             driver.FindElement(By.Name("new")).Click();
+            return this;
         }
-        public void FillGroupField(GroupData group)
+        public GroupHelper FillGroupField(GroupData group)
         {
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
@@ -30,13 +46,25 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            return this;
         }
 
-        public void SubmitGroupCreation()
+        public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
-
+            return this;
         }
+        public GroupHelper SelectGroupCheckbox(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+        public GroupHelper DeleteGroup()
+        {
+            driver.FindElement(By.Name("delete")).Click();
+            return this;
+        }
+
 
     }
 }

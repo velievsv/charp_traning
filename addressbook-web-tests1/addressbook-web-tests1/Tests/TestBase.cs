@@ -12,14 +12,14 @@ namespace WebAddressbookTest
    public class TestBase
     {
         protected IWebDriver driver;
-        protected string baseURL;
-
         protected ApplicationManager app;
 
         [SetUp]
         public void SetupTest()
         {
             app = new ApplicationManager();
+            app.Navigator.GoToHomePage();
+            app.auth.Login(new AccountData("admin", "secret"));
         }
 
         [TearDown]
@@ -28,15 +28,8 @@ namespace WebAddressbookTest
             app.Stop();
         }
 
-        protected void DeleteGroup()
-        {
-            driver.FindElement(By.Name("delete")).Click();
-        }
-
-        protected void SelectGroupCheckbox(int index)
-        {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])["+ index +"]")).Click();
-        }
+      
+       
         /* protected void ConfirmDeleteContactOnModalwindow()
         {
             acceptNextAlert = true;

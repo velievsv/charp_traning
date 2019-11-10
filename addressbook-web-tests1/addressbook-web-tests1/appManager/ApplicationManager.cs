@@ -16,6 +16,7 @@ namespace WebAddressbookTest
         protected string baseURL;
         protected ContactHelper contactHelper;
 
+  
         public void Stop()
         {
             try
@@ -30,10 +31,22 @@ namespace WebAddressbookTest
 
         public ApplicationManager()
         {
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigateHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
+            driver = new FirefoxDriver();
+            baseURL = "http://localhost/";
+
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigateHelper(this,baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
+            
+        }
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
         }
 
         public LoginHelper auth
@@ -58,13 +71,15 @@ namespace WebAddressbookTest
                 return groupHelper;
             }
         }
-        public ContactHelper Contact
+        public ContactHelper Contacts
         {
             get
             {
                 return contactHelper;
             }
         }
+
+    
     }
     
 }
