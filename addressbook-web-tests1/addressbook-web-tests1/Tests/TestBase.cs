@@ -28,22 +28,6 @@ namespace WebAddressbookTest
             app.Stop();
         }
 
-      
-       
-        /* protected void ConfirmDeleteContactOnModalwindow()
-        {
-            acceptNextAlert = true;
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
-        } */
-        protected void SelectContactCheckboxNumber()
-        {
-            driver.FindElement(By.Id("12")).Click();
-        }
-        protected void ClickToHomePageLink()
-        {
-            driver.FindElement(By.LinkText("home")).Click();
-        }
     }
 
 }

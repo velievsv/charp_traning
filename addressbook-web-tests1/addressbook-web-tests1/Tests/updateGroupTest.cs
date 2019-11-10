@@ -10,18 +10,24 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTest
 {
     [TestFixture]
-    public class ContactCreate : TestBase
+    public class UpdateGroupTest : TestBase
     {
-
         [Test]
-        public void ContactCreatingTest()
+        public void updateGroup()
         {
-            ContactData contact = new ContactData("Svyatoslav");
-            contact.Middlename = "Veliev";
-            contact.Lastname = "DontHaveLastName";
-            app.Contacts.CreateContact(contact);
-            
+            GroupData group = new GroupData("UpdateName");
+            group.Header = "UpdateHeader";
+            group.Footer = "UpdateFooter";
+
+            app.Groups.UpdateGroup(group);
         }
+
+
+
+
+
+       
+
 
     }
 }
