@@ -16,9 +16,11 @@ namespace WebAddressbookTest
         [Test]
         public void RemoveContactTest()
         {
-
-            driver.FindElement(By.XPath("//input[@id='4']")).Click();
+            app.Contacts.ChooseContactCheckboxOnHomePage();
+            app.Contacts.SubmitDeleteOnHomePage();
+            app.Contacts.AcceptDeleteContact();
         }
+
 
     }
 }

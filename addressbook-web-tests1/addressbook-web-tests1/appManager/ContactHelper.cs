@@ -92,5 +92,22 @@ public class ContactHelper : HelperBase
             return this;
         }
 
+         public ContactHelper ChooseContactCheckboxOnHomePage()
+        {
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[1]")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitDeleteOnHomePage()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+        public ContactHelper AcceptDeleteContact()
+        {
+            acceptNextAlert = true;
+            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            return this;
+        }
     }
 }
