@@ -87,7 +87,7 @@ namespace WebAddressbookTest
         }
         public GroupHelper SelectGroupCheckbox(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[{index}]")).Click();
             return this;
         }
         public GroupHelper DeleteGroup()

@@ -13,6 +13,9 @@ namespace WebAddressbookTest
     {
         protected IWebDriver driver;
         protected ApplicationManager app;
+        private StringBuilder verificationErrors;
+        protected bool acceptNextAlert = true;
+        
 
         [SetUp]
         public void SetupTest()
@@ -20,12 +23,14 @@ namespace WebAddressbookTest
             app = new ApplicationManager();
             app.Navigator.GoToHomePage();
             app.auth.Login(new AccountData("admin", "secret"));
+            verificationErrors = new StringBuilder();
         }
 
         [TearDown]
         public void TeardownTest()
         {
             app.Stop();
+            Assert.AreEqual("", verificationErrors.ToString());
         }
 
     }

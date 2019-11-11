@@ -36,14 +36,8 @@ namespace WebAddressbookTest
         }
         public string Header
         {
-            get
-            {
-                return header;
-            }
-            set
-            {
-                header = value;
-            }
+            get;
+            set;
         }
 
         public string Footer

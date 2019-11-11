@@ -32,7 +32,7 @@ namespace WebAddressbookTest
         public ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/";
+            baseURL = "http://localhost:8080/addressbook/";
 
             loginHelper = new LoginHelper(this);
             navigator = new NavigateHelper(this,baseURL);

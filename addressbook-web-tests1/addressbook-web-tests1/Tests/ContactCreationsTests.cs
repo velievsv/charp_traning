@@ -16,9 +16,10 @@ namespace WebAddressbookTest
         [Test]
         public void ContactCreatingTest()
         {
-            ContactData contact = new ContactData("Svyatoslav");
+            ContactData contact = new ContactData();
             contact.Middlename = "Veliev";
             contact.Lastname = "DontHaveLastName";
+            contact.Firstname = "FirstName";
             app.Contacts.CreateContact(contact);
             
         }
