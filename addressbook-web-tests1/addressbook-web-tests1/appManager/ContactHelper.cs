@@ -94,7 +94,7 @@ public class ContactHelper : HelperBase
 
          public ContactHelper ChooseContactCheckboxOnHomePage()
         {
-            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[1]")).Click();
+            driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
             return this;
         }
 
