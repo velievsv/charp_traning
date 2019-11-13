@@ -19,7 +19,7 @@ namespace WebAddressbookTest
         public GroupHelper UpdateGroup(GroupData group)
         {
             manager.Navigator.GoToGroupePage();
-            SelectGroupCheckbox(1);
+            SelectGroupCheckbox();
             ClickEditOnGroupPage();
             FillGroupFieldUpdate(group);
             InitUpdateGroup();
@@ -37,7 +37,7 @@ namespace WebAddressbookTest
         }
         public GroupHelper DeleteGroups()
         {
-            SelectGroupCheckbox(1);
+            SelectGroupCheckbox();
             DeleteGroup();
             return this;
         }
@@ -85,9 +85,9 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("submit")).Click();
             return this;
         }
-        public GroupHelper SelectGroupCheckbox(int index)
+        public GroupHelper SelectGroupCheckbox()
         {
-            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[{index}]")).Click();
+            driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
             return this;
         }
         public GroupHelper DeleteGroup()

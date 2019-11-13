@@ -20,7 +20,7 @@ public class ContactHelper : HelperBase
 
         {
             manager.Navigator.GoToHomePage();
-            ChooseContactAndClickEdit(3);
+            ChooseContactAndClickEdit();
             UpdateContactForm();
             ClickUpdateButton();
             GoToHomePage();
@@ -58,11 +58,13 @@ public class ContactHelper : HelperBase
             return this;
         }
 
-        public ContactHelper ChooseContactAndClickEdit(int indexIdLink)
+        public ContactHelper ChooseContactAndClickEdit()
         {
 
             // driver.FindElement(By.XPath($"//table[@id='maintable']/а[.edit.php?id='{indexIdLink}']")).Click();
-            driver.FindElement(By.XPath($"//table[@id='maintable']/tbody/tr['{indexIdLink}']/td[8]/a/img")).Click();
+            // driver.FindElement(By.XPath($"//table[@id='maintable']/tbody/tr['{indexIdLink}']/td[8]/a/img")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]")).Click();
+
             return this;
         }
 
