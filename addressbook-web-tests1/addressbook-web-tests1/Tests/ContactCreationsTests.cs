@@ -12,7 +12,7 @@ namespace WebAddressbookTest
     [TestFixture]
     public class ContactCreate : TestBase
     {
-
+        
         [Test]
         public void ContactCreatingTest()
         {

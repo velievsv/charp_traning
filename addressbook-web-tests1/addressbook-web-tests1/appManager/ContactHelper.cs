@@ -16,12 +16,12 @@ public class ContactHelper : HelperBase
 
         }
 
-        public ContactHelper EditContact()
+        public ContactHelper EditContact(ContactData contact)
 
         {
             manager.Navigator.GoToHomePage();
             ChooseContactAndClickEdit();
-            UpdateContactForm();
+            UpdateContactForm(contact);
             ClickUpdateButton();
             GoToHomePage();
             return this;
@@ -47,16 +47,14 @@ public class ContactHelper : HelperBase
             return this;
         }
 
-        public ContactHelper UpdateContactForm()
-    {
-        driver.FindElement(By.Name("firstname")).Click();
-        driver.FindElement(By.Name("firstname")).Clear();
-        driver.FindElement(By.Name("firstname")).SendKeys("Proverka");
-        driver.FindElement(By.Name("middlename")).Click();
-        driver.FindElement(By.Name("middlename")).Clear();
-        driver.FindElement(By.Name("middlename")).SendKeys("Proverka");
+        public ContactHelper UpdateContactForm(ContactData contact)
+        {
+            type(By.Name("firstname"), contact.Firstname);
+            type(By.Name("middlename"), contact.Middlename);
             return this;
         }
+
+        
 
         public ContactHelper ChooseContactAndClickEdit()
         {
@@ -82,13 +80,13 @@ public class ContactHelper : HelperBase
 
         public ContactHelper FillContactForm(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Click();
+            
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
-            driver.FindElement(By.Name("lastname")).Click();
+            
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
-            driver.FindElement(By.Name("middlename")).Click();
+           
             driver.FindElement(By.Name("middlename")).Clear();
             driver.FindElement(By.Name("middlename")).SendKeys(contact.Middlename);
             return this;

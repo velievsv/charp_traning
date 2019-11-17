@@ -16,8 +16,8 @@ namespace WebAddressbookTest
         public void updateGroup()
         {
             GroupData group = new GroupData("UpdateName");
-            group.Header = "UpdateHeader";
-            group.Footer = "UpdateFooter";
+            group.Header = null;
+            group.Footer = null;
 
             app.Groups.UpdateGroup(group);
         }
