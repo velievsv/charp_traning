@@ -6,23 +6,15 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-
 namespace WebAddressbookTest
 {
-   [SetUpFixture]
-   public class TestSuiteFixture
+    public class AuthTestBase : TestBase
     {
-
-        [OneTimeSetUp]
-        public void InitApplicationManager()
+        [SetUp]
+        public void SetupLogin()
         {
-            ApplicationManager app = ApplicationManager.GetInstance();
-            app.Navigator.GoToHomePage();
             app.auth.Login(new AccountData("admin", "secret"));
+
         }
     }
-     
-
-
-
 }
