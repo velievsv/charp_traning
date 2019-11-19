@@ -6,7 +6,7 @@ using System.Text;
 namespace WebAddressbookTest
 {
     [TestFixture]
-   public class LoginTest : TestBase
+   public class LoginTest : AuthTestBase
     {
         [Test]
         public void LoginWithValidCredentials()

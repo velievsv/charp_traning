@@ -29,6 +29,7 @@ namespace WebAddressbookTest
 
         public GroupHelper CreateGroup(GroupData group)
         {
+            
             manager.Navigator.GoToGroupePage();
             InitNewGroupCreation();
             FillGroupField(group);
