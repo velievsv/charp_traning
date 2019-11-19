@@ -35,7 +35,12 @@ namespace WebAddressbookTest
         }
         public void BackToHomePage()
         {
+            if (driver.Url == baseUrl)
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("home")).Click();
+
         }
         public void GotoAddNewContactPage()
         {   if (driver.Url == baseUrl + "/addressbook/edit.php"

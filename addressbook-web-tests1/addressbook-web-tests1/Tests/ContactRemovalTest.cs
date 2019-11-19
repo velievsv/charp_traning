@@ -19,6 +19,7 @@ namespace WebAddressbookTest
             app.Contacts.ChooseContactCheckboxOnHomePage();
             app.Contacts.SubmitDeleteOnHomePage();
             app.Contacts.AcceptDeleteContact();
+            app.Navigator.BackToHomePage();
         }
 
 
