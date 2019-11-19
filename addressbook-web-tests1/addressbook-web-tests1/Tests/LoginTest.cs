@@ -10,9 +10,7 @@ namespace WebAddressbookTest
     {
         [Test]
         public void LoginWithValidCredentials()
-        {
-            
-
+        {      
             AccountData account = new AccountData("admin","secret");
             app.auth.Login(account);
             Assert.IsTrue(app.auth.IsLoggedIn(account));
