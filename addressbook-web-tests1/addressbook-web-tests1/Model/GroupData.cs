@@ -7,7 +7,6 @@ namespace WebAddressbookTest
    public class GroupData
     {
         private string name;
-        private string header;
         private string footer;
 
             public GroupData(string name)
@@ -18,7 +17,7 @@ namespace WebAddressbookTest
 
         public GroupData(string header, string footer)
         {
-            this.header = header;
+            this.Header = header;
             this.footer = footer;
         }
          public string Name
@@ -36,8 +35,7 @@ namespace WebAddressbookTest
         }
         public string Header
         {
-            get;
-            set;
+            get;set;
         }
 
         public string Footer

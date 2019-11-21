@@ -11,7 +11,7 @@ namespace WebAddressbookTest
 {
    public class TestBase
     {
-        protected IWebDriver driver;
+
         protected ApplicationManager app;
       
 
@@ -20,7 +20,7 @@ namespace WebAddressbookTest
         public void SetupApplicationManager()
         {
             app = ApplicationManager.GetInstance();
-            app.auth.Login(new AccountData("admin", "secret"));
+
 
         }
     }

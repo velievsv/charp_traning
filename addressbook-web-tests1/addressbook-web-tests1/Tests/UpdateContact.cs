@@ -10,13 +10,16 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTest
 {
     [TestFixture]
-    public class UpdateContactTests : TestBase
+    public class UpdateContactTests : AuthTestBase
     {
        
         [Test]
         public void EditContact()
         {
             ContactData contact = new ContactData();
+            contact.Middlename = "Update1";
+            contact.Lastname = "Update2";
+            contact.Firstname = "Update3";
             app.Contacts.EditContact(contact);
         }
 

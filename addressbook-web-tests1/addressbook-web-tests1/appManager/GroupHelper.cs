@@ -4,6 +4,7 @@ using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using NUnit.Framework;
 
 namespace WebAddressbookTest
 {
@@ -34,13 +35,27 @@ namespace WebAddressbookTest
             InitNewGroupCreation();
             FillGroupField(group);
             SubmitGroupCreation();
+            manager.Navigator.GoToGroupePage();
             return this;
         }
-        public GroupHelper DeleteGroups()
-        {
+        public void DeleteGroups()
+        {   if (!CheckBoxAvailable())
+            {
+          
+                GroupData group = new GroupData("New_Group");
+                group.Header = "New_Head";
+                group.Footer = "New_Foot";
+
+                manager.Groups.CreateGroup(group);
+            }
             SelectGroupCheckbox();
             DeleteGroup();
-            return this;
+            return;
+        }
+
+        public bool CheckBoxAvailable()
+        {
+            return IsElementPresent(By.XPath("(//input[@type='checkbox'])[1]"));
         }
         public GroupHelper InitNewGroupCreation()
         {
@@ -83,6 +98,15 @@ namespace WebAddressbookTest
         }
         public GroupHelper SelectGroupCheckbox()
         {
+            if(!CheckBoxAvailable())
+            {
+                GroupData group = new GroupData("New_Group");
+                group.Header = "New_Head";
+                group.Footer = "New_Foot";
+
+                manager.Groups.CreateGroup(group);
+
+            }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
             return this;
         }

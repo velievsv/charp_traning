@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using NUnit.Framework;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTest
 { 
@@ -58,13 +58,23 @@ public class ContactHelper : HelperBase
 
         public ContactHelper ChooseContactAndClickEdit()
         {
-
+            if (!CheckCheckBoxAvailable())
+            {
+                ContactData contact = new ContactData("Lol","Lal","Lil");
+                manager.Contacts.CreateContact(contact);
+            }
             // driver.FindElement(By.XPath($"//table[@id='maintable']/а[.edit.php?id='{indexIdLink}']")).Click();
             // driver.FindElement(By.XPath($"//table[@id='maintable']/tbody/tr['{indexIdLink}']/td[8]/a/img")).Click();
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]")).Click();
 
             return this;
         }
+
+        public bool CheckCheckBoxAvailable()
+        {
+            return IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]"));
+        }
+
 
         public ContactHelper GoToHomePage()
     {
@@ -94,6 +104,11 @@ public class ContactHelper : HelperBase
 
          public ContactHelper ChooseContactCheckboxOnHomePage()
         {
+            if (!CheckCheckBoxAvailable())
+            {
+                ContactData contact = new ContactData("Lol", "Lal", "Lil");
+                manager.Contacts.CreateContact(contact);
+            }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
             return this;
         }
