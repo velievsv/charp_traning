@@ -28,6 +28,18 @@ namespace WebAddressbookTest
             return this;
         }
 
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupePage();
+           ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+            return groups;
+        }
+
         public GroupHelper CreateGroup(GroupData group)
         {
             
@@ -39,7 +51,10 @@ namespace WebAddressbookTest
             return this;
         }
         public void DeleteGroups()
-        {   if (!CheckBoxAvailable())
+
+        {
+            manager.Navigator.GoToGroupePage();
+            if (!CheckBoxAvailable())
             {
           
                 GroupData group = new GroupData("New_Group");
@@ -50,6 +65,7 @@ namespace WebAddressbookTest
             }
             SelectGroupCheckbox();
             DeleteGroup();
+            manager.Navigator.BackToHomePage();
             return;
         }
 

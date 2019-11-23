@@ -35,7 +35,20 @@ public class ContactHelper : HelperBase
             manager.Navigator.BackToHomePage();
             return this;
         }
-    public ContactHelper ClickToHomePageFromForm()
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("td.center"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
+        }
+
+        public ContactHelper ClickToHomePageFromForm()
     {
         driver.FindElement(By.LinkText("home page")).Click();
             return this;

@@ -39,10 +39,39 @@ namespace WebAddressbookTest
             this.middlename = middlename;
             this.lastname = lastname;
         }
-        public ContactData()
+        public ContactData(string text)
         {
 
         }
+
+        public ContactData()
+        {
+        }
+
+        public bool Equals(ContactData other)
+        {
+            if (object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Firstname == other.Firstname /*&& Middlename == other.Middlename*/;
+        }
+
+         public int GetHashCodeFirstName()
+        {
+            return Firstname.GetHashCode();
+            
+        }
+       /* public int GetHashCodeMiddleName()
+        {
+            return Middlename.GetHashCode();
+
+        }*/
+
         public string Firstname
         {
             get

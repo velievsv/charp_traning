@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace WebAddressbookTest
 {
-   public class GroupData
+   public class GroupData : IEquatable<GroupData>
     {
         private string name;
         private string footer;
@@ -14,6 +15,24 @@ namespace WebAddressbookTest
             this.name = name;
           
         }
+
+        public bool Equals(GroupData other)
+        {
+            if (object.ReferenceEquals(other,null))
+            {
+                return false;
+            }
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Name == other.Name;
+        }
+
+        public int GetHashCode()
+        {
+            return Name.GetHashCode();
+        } 
 
         public GroupData(string header, string footer)
         {
