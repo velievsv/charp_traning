@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WebAddressbookTest
 {
-   public class GroupData : IEquatable<GroupData>
+   public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
         private string name;
         private string footer;
@@ -28,11 +28,23 @@ namespace WebAddressbookTest
             }
             return Name == other.Name;
         }
-
-        public int GetHashCode()
+        public int  CompareTo(GroupData other)
+        {
+            if (object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return Name.CompareTo(other.Name);
+        }
+        public override int GetHashCode()
         {
             return Name.GetHashCode();
-        } 
+        }
+
+        public override string ToString()
+        {
+            return "name=" + Name;
+        }
 
         public GroupData(string header, string footer)
         {

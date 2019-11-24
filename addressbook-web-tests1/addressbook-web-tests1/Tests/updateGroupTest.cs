@@ -6,11 +6,12 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAddressbookTest
 {
     [TestFixture]
-    public class UpdateGroupTest : TestBase
+    public class UpdateGroupTest : AuthTestBase
     {
         [Test]
         public void updateGroup()
@@ -19,7 +20,14 @@ namespace WebAddressbookTest
             group.Header = null;
             group.Footer = null;
 
+            List<GroupData> OldGroups = app.Groups.GetGroupList();
             app.Groups.UpdateGroup(group);
+
+            List<GroupData> NewGroups = app.Groups.GetGroupList();
+            OldGroups[0].Name = group.Name;
+            OldGroups.Sort();
+            NewGroups.Sort();
+            Assert.AreEqual(OldGroups, NewGroups);
         }
 
 

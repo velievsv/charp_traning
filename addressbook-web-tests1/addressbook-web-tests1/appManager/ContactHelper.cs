@@ -40,7 +40,7 @@ public class ContactHelper : HelperBase
         {
             List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("td.center"));
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.entry"));
             foreach (IWebElement element in elements)
             {
                 contacts.Add(new ContactData(element.Text));
