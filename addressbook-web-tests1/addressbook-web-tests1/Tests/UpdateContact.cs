@@ -17,15 +17,12 @@ namespace WebAddressbookTest
         [Test]
         public void EditContact()
         {
-            ContactData contact = new ContactData();
-            contact.Middlename = "Update1";
-            contact.Lastname = "Update2";
-            contact.Firstname = "Update3";
+            ContactData contact = new ContactData("Update1", "Update2", "Update3");
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.EditContact(contact);
             List<ContactData> NewContacts = app.Contacts.GetContactList();
             OldContacts[0].Firstname = contact.Firstname;
-          //  OldContacts[0].Middlename = contact.Middlename;
+            OldContacts[0].Middlename = contact.Middlename;
             OldContacts.Sort();
             NewContacts.Sort();
             Assert.AreEqual(OldContacts, NewContacts);

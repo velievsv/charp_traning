@@ -39,14 +39,11 @@ namespace WebAddressbookTest
             this.middlename = middlename;
             this.lastname = lastname;
         }
-        public ContactData(string text)
-        {
 
-        }
+      //  public ContactData()
+      //  {
 
-        public ContactData()
-        {
-        }
+      //  }
 
       
 
@@ -70,7 +67,14 @@ namespace WebAddressbookTest
             {
                 return 1;
             }
-            return (Firstname /*+ Middlename*/).CompareTo(other.Firstname /*+ Middlename*/);
+            if (other.middlename == middlename)
+            {
+                if (other.firstname == firstname)
+                {
+                    return (firstname).CompareTo(other.firstname); ;
+                }
+            }
+            return (middlename).CompareTo(other.middlename);
         }
 
         public override int GetHashCode()

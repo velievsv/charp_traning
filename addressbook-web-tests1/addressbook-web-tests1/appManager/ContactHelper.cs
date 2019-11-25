@@ -6,6 +6,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace WebAddressbookTest
 { 
@@ -43,7 +44,8 @@ public class ContactHelper : HelperBase
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.entry"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text));
+                element.FindElements(By.CssSelector("td.center"));
+                contacts.Add(new ContactData(element.Text, element.Text,element.Text)); ;
             }
             return contacts;
         }
@@ -119,7 +121,7 @@ public class ContactHelper : HelperBase
         {
             if (!CheckCheckBoxAvailable())
             {
-                ContactData contact = new ContactData("Lol", "Lal", "Lil");
+                ContactData contact = new ContactData("Lol", "Lal","Lil");
                 manager.Contacts.CreateContact(contact);
             }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
