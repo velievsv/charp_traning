@@ -82,6 +82,11 @@ namespace WebAddressbookTest
             return (Firstname + Middlename).GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return "name=" + Middlename;
+        }
+
         public string Firstname
         {
             get

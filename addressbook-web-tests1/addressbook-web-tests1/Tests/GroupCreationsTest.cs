@@ -22,6 +22,9 @@ namespace WebAddressbookTest
 
             app.Groups.CreateGroup(group);
 
+            int count = app.Groups.GetGroupCount();
+            Assert.AreEqual(OldGroups.Count + 1, count);
+
             List<GroupData> NewGroups = app.Groups.GetGroupList();
             OldGroups.Add(group);
             OldGroups.Sort();
@@ -32,27 +35,27 @@ namespace WebAddressbookTest
 
             
         }
-         [Test]
-         public void BadNameGroupCreationTests()
-         {
+        /*        [Test]
+                public void BadNameGroupCreationTests()
+                {
 
-             GroupData group = new GroupData("a'a");
-             group.Header = "";
-             group.Footer = "";
+                    GroupData group = new GroupData("a'a");
+                    group.Header = "";
+                    group.Footer = "";
 
-             List<GroupData> OldGroups = app.Groups.GetGroupList();
+                    List<GroupData> OldGroups = app.Groups.GetGroupList();
 
-             app.Groups.CreateGroup(group);
-            List<GroupData> NewGroups = app.Groups.GetGroupList();
-            OldGroups.Add(group);
-            OldGroups.Sort();
-            NewGroups.Sort();
-            Assert.AreEqual(OldGroups, NewGroups);
-            app.Navigator.BackToHomePage();
-            app.auth.Logout();
+                    app.Groups.CreateGroup(group);
+                   List<GroupData> NewGroups = app.Groups.GetGroupList();
+                   OldGroups.Add(group);
+                   OldGroups.Sort();
+                   NewGroups.Sort();
+                   Assert.AreEqual(OldGroups, NewGroups);
+                   app.Navigator.BackToHomePage();
+                   app.auth.Logout();
 
 
-        } 
+               }  */
         [Test]
         public void EmptyGroupCreationTests()
         {
@@ -64,6 +67,8 @@ namespace WebAddressbookTest
             List<GroupData> OldGroups = app.Groups.GetGroupList();
 
             app.Groups.CreateGroup(group);
+            int count = app.Groups.GetGroupCount();
+            Assert.AreEqual(OldGroups.Count + 1, count);
             List<GroupData> NewGroups = app.Groups.GetGroupList();
             OldGroups.Add(group);
             OldGroups.Sort();

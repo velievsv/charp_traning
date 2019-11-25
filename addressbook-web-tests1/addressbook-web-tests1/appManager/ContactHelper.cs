@@ -28,26 +28,37 @@ public class ContactHelper : HelperBase
             return this;
         }
 
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.XPath("//tr[@name='entry']")).Count;
+        }
+
         public ContactHelper CreateContact(ContactData contact)
         {
             manager.Navigator.GotoAddNewContactPage();
             FillContactForm(contact);
-            ConfirmContactCreate();
-            manager.Navigator.BackToHomePage();
+            ConfirmContactCreate();          
             return this;
         }
 
+        private List<ContactData>contactCash = null;
+
         public List<ContactData> GetContactList()
         {
-            manager.Navigator.GoToHomePage();
-            List<ContactData> contacts = new List<ContactData>();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
-            foreach (IWebElement element in elements)
+            if (contactCash == null)
             {
-                element.FindElements(By.XPath("//tr[@name='entry']//td[@name='center']"));
-                contacts.Add(new ContactData(element.Text, element.Text,element.Text)); ;
+                contactCash = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                List<ContactData> contacts = new List<ContactData>();
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
+                foreach (IWebElement element in elements)
+                {
+                    element.FindElements(By.XPath("//tr[@name='entry']//td[@name='center']"));
+                    contactCash.Add(new ContactData(element.Text, element.Text, element.Text)); ;
+                }
             }
-            return contacts;
+
+            return new List<ContactData>(contactCash);
         }
 
         public ContactHelper ClickToHomePageFromForm()

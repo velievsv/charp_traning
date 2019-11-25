@@ -17,15 +17,21 @@ namespace WebAddressbookTest
         [Test]
         public void ContactCreatingTest()
         {
-            ContactData contact = new ContactData("Veliev", "DontHaveLastName","FirstName");
+            ContactData contact = new ContactData("FirstName", "MiddleName", "LastName");
 
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.CreateContact(contact);
-
+            app.Navigator.BackToHomePage();
+            int Count = app.Contacts.GetContactCount();
+            Assert.AreEqual(OldContacts.Count + 1, Count);
+            
             List<ContactData> NewContacts = app.Contacts.GetContactList();
-            Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
+           // OldContacts.Add(contact);
+            OldContacts.Sort();
+            NewContacts.Sort();
+            Assert.AreEqual(OldContacts, NewContacts);
         }
-        [Test]
+        /*[Test]
         public void BadNameContactCreatingTest()
         {
             ContactData contact = new ContactData("a'a","DontHaveLastName","FirstName");
@@ -36,6 +42,6 @@ namespace WebAddressbookTest
 
             List<ContactData> NewContacts = app.Contacts.GetContactList();
             Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
-        }
+        } */
     }
 }

@@ -28,16 +28,21 @@ namespace WebAddressbookTest
             return this;
         }
 
+        private List<GroupData>groupCash = null;
+
         public List<GroupData> GetGroupList()
         {
-            List<GroupData> groups = new List<GroupData>();
-            manager.Navigator.GoToGroupePage();
-           ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-            foreach (IWebElement element in elements)
+            if (groupCash == null)
             {
-                groups.Add(new GroupData(element.Text));
+                groupCash = new List<GroupData>();
+                manager.Navigator.GoToGroupePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//span[@class='group']"));
+                foreach (IWebElement element in elements)
+                {
+                    groupCash.Add(new GroupData(element.Text));
+                }
             }
-            return groups;
+            return new List<GroupData>(groupCash);
         }
 
         public GroupHelper CreateGroup(GroupData group)
@@ -67,6 +72,11 @@ namespace WebAddressbookTest
             DeleteGroup();
             manager.Navigator.BackToHomePage();
             return;
+        }
+
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.XPath("//span[@class='group']")).Count;
         }
 
         public bool CheckBoxAvailable()
@@ -105,11 +115,13 @@ namespace WebAddressbookTest
         public GroupHelper InitUpdateGroup()
         {
             driver.FindElement(By.Name("update")).Click();
+            groupCash = null;
             return this;
         }
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupCash = null;
             return this;
         }
         public GroupHelper SelectGroupCheckbox()
@@ -129,6 +141,7 @@ namespace WebAddressbookTest
         public GroupHelper DeleteGroup()
         {
             driver.FindElement(By.Name("delete")).Click();
+            groupCash = null;
             return this;
         }
         public GroupHelper BackToTheGroupPage()
