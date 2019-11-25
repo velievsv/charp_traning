@@ -21,6 +21,12 @@ namespace WebAddressbookTest
             app.Contacts.ChooseContactCheckboxOnHomePage();
             app.Contacts.SubmitDeleteOnHomePage();
             app.Contacts.AcceptDeleteContact();
+
+            int count = app.Contacts.GetContactCount();
+            Assert.AreEqual(OldContacts.Count - 1, count);
+
+
+
             List<ContactData> NewContacts = app.Contacts.GetContactList();
             OldContacts.RemoveAt(0);
             Assert.AreEqual(OldContacts, NewContacts);

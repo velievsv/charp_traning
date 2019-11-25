@@ -22,6 +22,7 @@ namespace WebAddressbookTest
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.CreateContact(contact);
             app.Navigator.BackToHomePage();
+
             int Count = app.Contacts.GetContactCount();
             Assert.AreEqual(OldContacts.Count + 1, Count);
             

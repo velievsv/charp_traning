@@ -53,7 +53,7 @@ public class ContactHelper : HelperBase
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
                 foreach (IWebElement element in elements)
                 {
-                    element.FindElements(By.XPath("//tr[@name='entry']//td[@name='center']"));
+                    element.FindElements(By.XPath("//tr[@name='entry']/td[@class='center']"));
                     contactCash.Add(new ContactData(element.Text, element.Text, element.Text)); ;
                 }
             }
