@@ -6,7 +6,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
-using System.Linq;
+
 
 namespace WebAddressbookTest
 { 
@@ -39,12 +39,12 @@ public class ContactHelper : HelperBase
 
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.entry"));
+            List<ContactData> contacts = new List<ContactData>();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
             foreach (IWebElement element in elements)
             {
-                element.FindElements(By.CssSelector("td.center"));
+                element.FindElements(By.XPath("//tr[@name='entry']//td[@name='center']"));
                 contacts.Add(new ContactData(element.Text, element.Text,element.Text)); ;
             }
             return contacts;
