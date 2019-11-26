@@ -50,7 +50,6 @@ public class ContactHelper : HelperBase
             {
                 contactCash = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
-                List<ContactData> contacts = new List<ContactData>();
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
                 foreach (IWebElement element in elements)
                 {
