@@ -57,7 +57,6 @@ public class ContactHelper : HelperBase
                     contactCash.Add(new ContactData(element.Text, element.Text, element.Text) {id = element.FindElement(By.TagName("input")).GetAttribute("value") });
                 }
             }
-
             return new List<ContactData>(contactCash);
         }
 
@@ -70,6 +69,7 @@ public class ContactHelper : HelperBase
         public ContactHelper ClickUpdateButton()
     {
             driver.FindElement(By.Name("update")).Click();
+            contactCash = null;
             return this;
         }
 
@@ -111,6 +111,7 @@ public class ContactHelper : HelperBase
         public ContactHelper ConfirmContactCreate()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            contactCash = null;
             return this;
         }
 
@@ -136,12 +137,14 @@ public class ContactHelper : HelperBase
                 manager.Contacts.CreateContact(contact);
             }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
+            contactCash = null;
             return this;
         }
 
         public ContactHelper SubmitDeleteOnHomePage()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCash = null;
             return this;
         }
         public ContactHelper AcceptDeleteContact()
