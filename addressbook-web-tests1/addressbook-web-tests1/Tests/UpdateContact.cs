@@ -20,6 +20,10 @@ namespace WebAddressbookTest
             ContactData contact = new ContactData("FirstName", "MiddleName", "LastName");
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.EditContact(contact);
+
+            int count = app.Contacts.GetContactCount();
+            Assert.AreEqual(OldContacts.Count, count);
+
             List<ContactData> NewContacts = app.Contacts.GetContactList();
             OldContacts[0].Firstname = contact.Firstname;
             // OldContacts[0].Middlename = contact.Middlename;
