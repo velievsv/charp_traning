@@ -28,11 +28,16 @@ namespace WebAddressbookTest
 
 
             List<ContactData> NewContacts = app.Contacts.GetContactList();
-            // OldContacts.RemoveAt(0);
+            ContactData tobeRemoved = OldContacts[0];
+            //OldContacts.RemoveAt(0); - Если я оставляю эту строчку, то у меня падает проверка на строке 35, а если убираю, то не проходит AreNotEqual. Что-то я упустил.
             OldContacts.Sort();
             NewContacts.Sort();
             Assert.AreEqual(OldContacts, NewContacts);
             
+            foreach (ContactData contact in NewContacts)
+            {
+                Assert.AreNotEqual(contact.id, tobeRemoved.id);
+            }
         }
 
 

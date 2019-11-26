@@ -39,7 +39,7 @@ namespace WebAddressbookTest
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//span[@class='group']"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCash.Add(new GroupData(element.Text));
+                    groupCash.Add(new GroupData(element.Text) { id = element.FindElement(By.TagName("input")).GetAttribute("value") });
                 }
             }
             return new List<GroupData>(groupCash);

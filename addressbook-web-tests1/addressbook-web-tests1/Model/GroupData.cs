@@ -79,6 +79,8 @@ namespace WebAddressbookTest
             {
                 footer = value;
             }
+
         }
+        public string id { get; set; }
     }
 }

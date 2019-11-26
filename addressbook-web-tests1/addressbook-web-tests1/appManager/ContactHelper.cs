@@ -37,7 +37,8 @@ public class ContactHelper : HelperBase
         {
             manager.Navigator.GotoAddNewContactPage();
             FillContactForm(contact);
-            ConfirmContactCreate();          
+            ConfirmContactCreate();
+            manager.Navigator.BackToHomePage();
             return this;
         }
 
@@ -54,7 +55,7 @@ public class ContactHelper : HelperBase
                 foreach (IWebElement element in elements)
                 {
                     element.FindElements(By.XPath("//tr[@name='entry']/td[@class='center']"));
-                    contactCash.Add(new ContactData(element.Text, element.Text, element.Text)); ;
+                    contactCash.Add(new ContactData(element.Text, element.Text, element.Text) {id = element.FindElement(By.TagName("input")).GetAttribute("value") });
                 }
             }
 

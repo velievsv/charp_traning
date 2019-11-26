@@ -301,6 +301,8 @@ namespace WebAddressbookTest
             {
                 notes = value;
             }
+
         }
+        public string id { get; set; }
     }
 }
