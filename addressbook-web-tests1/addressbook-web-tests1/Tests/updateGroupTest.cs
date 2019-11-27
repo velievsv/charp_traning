@@ -34,13 +34,13 @@ namespace WebAddressbookTest
             NewGroups.Sort();
             Assert.AreEqual(OldGroups, NewGroups);
 
-            /* foreach (GroupData group in NewGroups) // а здесь я не могу использовать group. Причина в том, что я по другому реализовал app.Groups.UpdateGroup(group); ??
+           foreach (GroupData group1 in NewGroups) // //Нельзя объявить group в данной локальной области. Как с этим справиться?
             {
-                if (group.id == oldData.id)
+                if (group1.id == oldData.id)
                 {
-                    Assert.AreEqual(group.Name, OldGroups[0].Name);
+                    Assert.AreEqual(oldData.Name, group1.Name);
                 } 
-            }*/
+            }
         }
     }
 }

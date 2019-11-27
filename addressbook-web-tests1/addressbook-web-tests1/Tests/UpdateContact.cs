@@ -19,6 +19,7 @@ namespace WebAddressbookTest
         {
             ContactData contact = new ContactData("FirstName", "MiddleName", "LastName");
             List<ContactData> OldContacts = app.Contacts.GetContactList();
+            ContactData oldContactData = OldContacts[0];
             app.Contacts.EditContact(contact);
 
             int count = app.Contacts.GetContactCount();
@@ -30,6 +31,14 @@ namespace WebAddressbookTest
             OldContacts.Sort();
             NewContacts.Sort();
             Assert.AreEqual(OldContacts, NewContacts);
+            foreach (ContactData contact1 in NewContacts) //Нельзя объявить contact в данной локальной области. Как с этим справиться?
+            {
+                if (contact1.id == oldContactData.id)
+                {
+                    Assert.AreEqual(oldContactData.Firstname, contact1.Firstname);
+
+                }
+            }
         }
 
         
