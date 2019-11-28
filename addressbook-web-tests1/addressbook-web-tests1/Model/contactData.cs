@@ -67,24 +67,22 @@ namespace WebAddressbookTest
             {
                 return 1;
             }
-            if (other.middlename == middlename)
+            var LastName = lastname.CompareTo(other.lastname);
+            if (LastName == 0)
             {
-                if (other.firstname == firstname)
-                {
-                    return (firstname).CompareTo(other.firstname); ;
-                }
+                    return (firstname).CompareTo(other.firstname);
             }
-            return (middlename).CompareTo(other.middlename);
+            return LastName;
         }
 
         public override int GetHashCode()
         {
-            return (Firstname + Middlename).GetHashCode();
+            return (Firstname + Lastname).GetHashCode();
         }
 
         public override string ToString()
         {
-            return "name=" + Middlename;
+            return "name=" + lastname + firstname + middlename;
         }
 
         public string Firstname
@@ -304,5 +302,8 @@ namespace WebAddressbookTest
 
         }
         public string id { get; set; }
+
+       
     }
+
 }
