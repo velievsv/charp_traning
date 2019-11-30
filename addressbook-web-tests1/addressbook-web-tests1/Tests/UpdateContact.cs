@@ -17,7 +17,7 @@ namespace WebAddressbookTest
         [Test]
         public void EditContact()
         {
-            ContactData contact = new ContactData("FirstName", "MiddleName", "LastName");
+            ContactData contact = new ContactData("FirstName","LastName");
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             ContactData oldContactData = OldContacts[0];
             app.Contacts.EditContact(contact);

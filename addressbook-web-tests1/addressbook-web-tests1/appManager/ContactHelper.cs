@@ -55,7 +55,7 @@ public class ContactHelper : HelperBase
                 {
                     
                     var cells = element.FindElements(By.XPath("./td"));
-                    contactCash.Add(new ContactData(cells[1].Text, cells[2].Text, cells[3].Text) {id = element.FindElement(By.TagName("input")).GetAttribute("value") });
+                    contactCash.Add(new ContactData(cells[1].Text, cells[2].Text) {id = element.FindElement(By.TagName("input")).GetAttribute("value") });
                 }
             }
             return new List<ContactData>(contactCash);
@@ -87,7 +87,7 @@ public class ContactHelper : HelperBase
         {
             if (!CheckCheckBoxAvailable())
             {
-                ContactData contact = new ContactData("Lol","Lal","Lil");
+                ContactData contact = new ContactData("Lol","Lal");
                 manager.Contacts.CreateContact(contact);
             }
             // driver.FindElement(By.XPath($"//table[@id='maintable']/а[.edit.php?id='{indexIdLink}']")).Click();
@@ -134,7 +134,7 @@ public class ContactHelper : HelperBase
         {
             if (!CheckCheckBoxAvailable())
             {
-                ContactData contact = new ContactData("Lol", "Lal","Lil");
+                ContactData contact = new ContactData("Lol", "Lal");
                 manager.Contacts.CreateContact(contact);
             }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
