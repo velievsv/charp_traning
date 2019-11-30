@@ -16,6 +16,15 @@ namespace WebAddressbookTest
         [Test]
         public void updateGroup()
         {
+            if (!app.Groups.CheckBoxAvailable())
+            {
+
+                GroupData group1 = new GroupData("New_Group");
+                group1.Header = "New_Head";
+                group1.Footer = "New_Foot";
+
+                app.Groups.CreateGroup(group1);
+            }
             GroupData group = new GroupData("UpdateName");
             group.Header = null;
             group.Footer = null;

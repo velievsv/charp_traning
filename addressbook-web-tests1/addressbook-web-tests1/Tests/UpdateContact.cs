@@ -15,9 +15,14 @@ namespace WebAddressbookTest
     {
        
         [Test]
-        public void EditContact()
+        public void UpdateContact()
         {
-            ContactData contact = new ContactData("FirstName","LastName");
+            if (!app.Contacts.CheckCheckBoxAvailable())
+            {
+                ContactData contact1 = new ContactData("Велиев", "Святослав");
+                app.Contacts.CreateContact(contact1);
+            }
+            ContactData contact = new ContactData("Фамилия", "Имя");
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             ContactData oldContactData = OldContacts[0];
             app.Contacts.EditContact(contact);

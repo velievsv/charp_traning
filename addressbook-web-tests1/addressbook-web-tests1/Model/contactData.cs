@@ -33,7 +33,7 @@ namespace WebAddressbookTest
         private string phone2 = "";
         private string notes = "";
 
-        public ContactData (string firstname, string lastname)
+        public ContactData (string lastname, string firstname)
         {
             this.firstname = firstname;
           //  this.middlename = middlename;

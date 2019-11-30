@@ -17,6 +17,11 @@ namespace WebAddressbookTest
         [Test]
         public void RemoveContactTest()
         {
+            if (!app.Contacts.CheckCheckBoxAvailable())
+            {
+                ContactData contact1 = new ContactData("Велиев", "Святослав");
+                app.Contacts.CreateContact(contact1);
+            }
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.ChooseContactCheckboxOnHomePage();
             app.Contacts.SubmitDeleteOnHomePage();

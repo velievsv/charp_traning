@@ -15,6 +15,15 @@ namespace WebAddressbookTest
         [Test]
         public void GroupRemovalTest()
         {
+            if (!app.Groups.CheckBoxAvailable())
+            {
+
+                GroupData group = new GroupData("New_Group");
+                group.Header = "New_Head";
+                group.Footer = "New_Foot";
+
+                app.Groups.CreateGroup(group);
+            }
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.DeleteGroups();
 

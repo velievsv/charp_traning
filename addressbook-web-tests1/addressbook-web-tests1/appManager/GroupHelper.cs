@@ -59,15 +59,6 @@ namespace WebAddressbookTest
 
         {
             manager.Navigator.GoToGroupePage();
-            if (!CheckBoxAvailable())
-            {
-          
-                GroupData group = new GroupData("New_Group");
-                group.Header = "New_Head";
-                group.Footer = "New_Foot";
-
-                manager.Groups.CreateGroup(group);
-            }
             SelectGroupCheckbox();
             DeleteGroup();
             manager.Navigator.BackToHomePage();
@@ -126,15 +117,6 @@ namespace WebAddressbookTest
         }
         public GroupHelper SelectGroupCheckbox()
         {
-            if(!CheckBoxAvailable())
-            {
-                GroupData group = new GroupData("New_Group");
-                group.Header = "New_Head";
-                group.Footer = "New_Foot";
-
-                manager.Groups.CreateGroup(group);
-
-            }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
             return this;
         }

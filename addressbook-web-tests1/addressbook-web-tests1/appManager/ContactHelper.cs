@@ -30,6 +30,7 @@ public class ContactHelper : HelperBase
 
         public int GetContactCount()
         {
+            manager.Navigator.GoToHomePage();
             return driver.FindElements(By.XPath("//tr[@name='entry']")).Count;
         }
 
@@ -77,7 +78,7 @@ public class ContactHelper : HelperBase
         public ContactHelper UpdateContactForm(ContactData contact)
         {
             type(By.Name("firstname"), contact.Firstname);
-            type(By.Name("middlename"), contact.Middlename);
+            type(By.Name("lastname"), contact.Lastname);
             return this;
         }
 
@@ -85,13 +86,8 @@ public class ContactHelper : HelperBase
 
         public ContactHelper ChooseContactAndClickEdit()
         {
-            if (!CheckCheckBoxAvailable())
-            {
-                ContactData contact = new ContactData("Lol","Lal");
-                manager.Contacts.CreateContact(contact);
-            }
-            // driver.FindElement(By.XPath($"//table[@id='maintable']/а[.edit.php?id='{indexIdLink}']")).Click();
-            // driver.FindElement(By.XPath($"//table[@id='maintable']/tbody/tr['{indexIdLink}']/td[8]/a/img")).Click();
+            
+
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]")).Click();
 
             return this;
@@ -132,11 +128,6 @@ public class ContactHelper : HelperBase
 
          public ContactHelper ChooseContactCheckboxOnHomePage()
         {
-            if (!CheckCheckBoxAvailable())
-            {
-                ContactData contact = new ContactData("Lol", "Lal");
-                manager.Contacts.CreateContact(contact);
-            }
             driver.FindElement(By.XPath($"(//input[@type='checkbox'])[1]")).Click();
             contactCash = null;
             return this;
