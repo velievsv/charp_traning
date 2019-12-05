@@ -6,46 +6,13 @@ namespace WebAddressbookTest
 {
    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string firstname;
-        private string middlename = "";
-        private string lastname;
-        private string nickname = "";
-        //  private string photo = "";
-        private string title = "";
-        private string company = "";
-        private string address = "";
-        private string home = "";
-        private string mobile = "";
-        private string work = "";
-        private string fax = "";
-        private string email = "";
-        private string email2 = "";
-        private string email3 = "";
-        private string homepage = "";
-        //   private string bday;
-        //   private string bmouth;
-        //   private string byear;
-        //   private string aday;
-        //   private string amouth;
-        //   private string ayear;
-        //   private string new_group;
-        private string address2 = "";
-        private string phone2 = "";
-        private string notes = "";
+        private string allPhones;
 
         public ContactData (string lastname, string firstname)
         {
-            this.firstname = firstname;
-          //  this.middlename = middlename;
-            this.lastname = lastname;
+            this.Firstname = firstname;
+            this.Lastname = lastname;
         }
-
-      //  public ContactData()
-      //  {
-
-      //  }
-
-      
 
         public bool Equals(ContactData other)
         {
@@ -67,11 +34,11 @@ namespace WebAddressbookTest
             {
                 return 1;
             }
-            if (other.lastname == lastname)
+            if (other.Firstname == Lastname)
             {
-                return firstname.CompareTo(other.firstname);
+                return Firstname.CompareTo(other.Firstname);
             }
-            return lastname.CompareTo(other.lastname);
+            return Lastname.CompareTo(other.Lastname);
         }
 
         public override int GetHashCode()
@@ -81,223 +48,109 @@ namespace WebAddressbookTest
 
         public override string ToString()
         {
-            return "name=" + lastname + firstname;
+            return "name=" + Lastname + Firstname;
+        }
+
+        public string AllPhones
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return СleanUp(HomePhone) + СleanUp(MobilePhone) + СleanUp(WorkPhone);
+                }
+            }
+            set
+            {
+                allPhones = value;
+            }
+        }
+
+        private string СleanUp(string phone)
+        {
+           if (phone == null)
+            {
+                return "";
+            }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "");
         }
 
         public string Firstname
         {
-            get
-            {
-                return firstname;
-            }
-            set
-            {
-                firstname = value;
-            }
+            get;set;
         }
         public string Middlename
         {
-            get
-            {
-                return middlename;
-            }
-            set
-            {
-                middlename = value;
-            }
+            get; set;
         }
        public string Lastname
         {
-            get
-            {
-                return lastname;
-            }
-
-            set
-            {
-                lastname = value;
-            }
+            get; set;
         }
         public string Nickname
         {
-            get
-            {
-                return nickname;
-            }
-
-            set
-            {
-                nickname = value;
-            }
+            get; set;
         }
         public string Tittle
         {
-            get
-            {
-                return title;
-            }
-
-            set
-            {
-                title = value;
-            }
+            get; set;
         }
-            public string Company
+        public string Company
         {
-            get
-            {
-                return company;
-            }
-
-            set
-            {
-                company = value;
-            }
+            get; set;
         }
         public string Address
         {
-            get
-            {
-                return address;
-            }
-
-            set
-            {
-                address = value;
-            }
+            get; set;
         }
-        public string Home
+        public string HomePhone
         {
-            get
-            {
-                return home;
-            }
-
-            set
-            {
-                home = value;
-            }
+            get; set;
         }
-        public string Mobile
+        public string MobilePhone
         {
-            get
-            {
-                return mobile;
-            }
-
-            set
-            {
-                mobile = value;
-            }
+            get; set;
         }
-        public string Work
+        public string WorkPhone
         {
-            get
-            {
-                return work;
-            }
-
-            set
-            {
-                work = value;
-            }
+            get; set;
         }
         public string Fax
         {
-            get
-            {
-                return fax;
-            }
-
-            set
-            {
-                fax = value;
-            }
+            get; set;
         }
         public string Email
         {
-            get
-            {
-                return email;
-            }
-
-            set
-            {
-                email = value;
-            }
+            get; set;
         }
         public string Email2
         {
-            get
-            {
-                return email2;
-            }
-
-            set
-            {
-                email2 = value;
-            }
+            get; set;
         }
 
             public string Email3
         {
-            get
-            {
-                return email3;
-            }
-
-            set
-            {
-                email3 = value;
-            }
+            get; set;
         }
         public string Homepage
         {
-            get
-            {
-                return homepage;
-            }
-
-            set
-            {
-                homepage = value;
-            }
+            get; set;
         }
         public string Address2
         {
-            get
-            {
-                return address2;
-            }
-
-            set
-            {
-                address2 = value;
-            }
+            get; set;
         }
         public string Phone2
         {
-            get
-            {
-                return phone2;
-            }
-
-            set
-            {
-                phone2 = value;
-            }
+            get; set;
         }
         public string Notes
         {
-            get
-            {
-                return notes;
-            }
-
-            set
-            {
-                notes = value;
-            }
+            get; set;
 
         }
         public string id { get; set; }
