@@ -76,15 +76,21 @@ namespace WebAddressbookTest
 
         }
 
-       /* public ContactData GetContactInformationFromDetails(int index)
+        public ContactData GetContactInformationFromDetails(int index)
         {
             manager.Navigator.GoToHomePage();
             InitContactDetails(0);
 
+            IList<IWebElement> items = driver.FindElements(By.Id("content"));
+            string Details = items[0].Text;
 
-        
-
-        } */
+            return new ContactData("","")
+            {
+                Details = Details
+            };
+          
+          
+        }
 
 
         private void InitContactModification(int index)

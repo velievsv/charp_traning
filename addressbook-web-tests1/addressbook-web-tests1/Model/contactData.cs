@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTest
 {
@@ -89,6 +90,32 @@ namespace WebAddressbookTest
             }
         }
 
+        public string Details
+       {  get
+           {
+                if (Details != null)
+                {
+                    return Details;
+                }
+                else
+                {
+                    return СleanUpDetails(Lastname) + СleanUpDetails(Firstname) + СleanUpDetails(MobilePhone) + СleanUpDetails(WorkPhone) + СleanUpDetails(MobilePhone).Trim();
+                }
+            } 
+            set
+            {
+                 Details = value;
+            }
+        }
+
+        private string СleanUpDetails(string Details)
+        {
+            if (Details == null || Details == "")
+            {
+                return "";
+            }
+            return Regex.Replace(Details, "[ -()]", "") + "\r\n";
+        }
 
         private string СleanUp(string phone)
         {
@@ -96,7 +123,7 @@ namespace WebAddressbookTest
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") +"\r\n";
+            return Regex.Replace(phone, "[ -()]","") +"\r\n";
         }
 
         public string Firstname
