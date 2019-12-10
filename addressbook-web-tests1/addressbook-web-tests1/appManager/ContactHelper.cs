@@ -82,11 +82,11 @@ namespace WebAddressbookTest
             InitContactDetails(0);
 
             IList<IWebElement> items = driver.FindElements(By.Id("content"));
-            string Details = items[0].Text;
+            string details = items[0].Text;
 
             return new ContactData("","")
             {
-                Details = Details
+                Details = details
             };
           
           

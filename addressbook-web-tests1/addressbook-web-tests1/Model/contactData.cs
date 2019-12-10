@@ -9,6 +9,7 @@ namespace WebAddressbookTest
     {
         private string allPhones;
         private string allEmail;
+        private string details;
 
         public ContactData (string lastname, string firstname)
         {
@@ -93,29 +94,32 @@ namespace WebAddressbookTest
         public string Details
        {  get
            {
-                if (Details != null)
+                if (details != null)
                 {
-                    return Details;
+                    return details;
                 }
                 else
                 {
-                    return СleanUpDetails(Lastname) + СleanUpDetails(Firstname) + СleanUpDetails(MobilePhone) + СleanUpDetails(WorkPhone) + СleanUpDetails(MobilePhone).Trim();
+                    return Firstname +" " + Lastname + "\r\n\r\n" + AddWords(HomePhone, "H: ") + AddWords(MobilePhone, "M: ") + AddWords(WorkPhone, "W: ") +"\r\n" + AddWords(Email, "") +
+                            AddWords(Email2, "") + AddWords(Email3, "").Trim();
                 }
             } 
             set
             {
-                 Details = value;
+                 details = value;
             }
         }
 
-        private string СleanUpDetails(string Details)
+        private string AddWords(string phone, string prefix)
         {
-            if (Details == null || Details == "")
+            if (!string.IsNullOrEmpty(phone))
             {
-                return "";
+                return $"{prefix}{phone}\r\n";
             }
-            return Regex.Replace(Details, "[ -()]", "") + "\r\n";
-        }
+            return string.Empty;
+
+        }   
+
 
         private string СleanUp(string phone)
         {
