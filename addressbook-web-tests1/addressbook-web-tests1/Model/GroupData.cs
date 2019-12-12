@@ -11,9 +11,15 @@ namespace WebAddressbookTest
         private string footer;
 
             public GroupData(string name)
-        {
-            this.name = name;
+            {
+             this.name = name;
           
+            }
+
+        public GroupData(string header, string footer)
+        {
+            this.Header = header;
+            this.footer = footer;
         }
 
         public bool Equals(GroupData other)
@@ -43,14 +49,10 @@ namespace WebAddressbookTest
 
         public override string ToString()
         {
-            return "name=" + Name;
+            return "name=" + Name + "\nheader = " + Header + "\nfooter = " + footer;
         }
 
-        public GroupData(string header, string footer)
-        {
-            this.Header = header;
-            this.footer = footer;
-        }
+     
          public string Name
         {
             get

@@ -51,7 +51,7 @@ namespace WebAddressbookTest
 
         public override string ToString()
         {
-            return "name=" + Lastname + Firstname;
+            return "Lastname=" + Lastname + "/nFirstname" + Firstname;
         }
 
         public string AllPhones
@@ -204,6 +204,7 @@ namespace WebAddressbookTest
             get; set;
 
         }
+
         public string id { get; set; }
 
        

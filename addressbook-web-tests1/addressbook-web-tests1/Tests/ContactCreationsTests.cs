@@ -13,11 +13,20 @@ namespace WebAddressbookTest
     [TestFixture]
     public class ContactCreate : AuthTestBase
     {
-        
-        [Test]
-        public void ContactCreatingTest()
+        public static IEnumerable<ContactData> RandomContactDataProvider()
         {
-            ContactData contact = new ContactData("Фамилия","Имя");
+            List<ContactData> contacts = new List<ContactData>();
+            for (int i = 0; i < 5; i++)
+            {
+                contacts.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
+            }
+            return contacts;
+        }
+
+        [Test,TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreatingTest(ContactData contact)
+        {
+            
 
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.CreateContact(contact);
