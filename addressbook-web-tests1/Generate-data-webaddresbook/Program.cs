@@ -14,26 +14,55 @@ namespace Generate_data_webaddresbook
             int count = Convert.ToInt32(args[0]);
             StreamWriter writer = new StreamWriter(args[1]);
             string format = args[2];
-            List<GroupData> groups = new List<GroupData>();
-            for (int i = 0; i < count; i++)
+            string chooseTest = args[3];
+
+            if (chooseTest == "group") 
             {
-                groups.Add(new GroupData(TestBase.GenerateRandomString(10)) 
+                List<GroupData> groups = new List<GroupData>();
+                for (int i = 0; i < count; i++)
                 {
-                Header = TestBase.GenerateRandomString(100),
-                Footer = TestBase.GenerateRandomString(100)
-                });
-            }
-            if (format == "csv")
-            {
-                writeGroupsToCsvFile(groups, writer);
-            } else if (format == "xml")
-            {
-                writeGroupsToXmlFile(groups, writer);
-            } else
-            {
-                System.Console.Out.Write("Unrecognized format" + format);
-            }
+                    groups.Add(new GroupData(TestBase.GenerateRandomString(10))
+                    {
+                        Header = TestBase.GenerateRandomString(100),
+                        Footer = TestBase.GenerateRandomString(100)
+                    });
+                }
+                if (format == "csv")
+                {
+                    writeGroupsToCsvFile(groups, writer);
+                } else if (format == "xml")
+                {
+                    writeGroupsToXmlFile(groups, writer);
+                } else
+                {
+                    System.Console.Out.Write("Unrecognized format" + format);
+                }
                 writer.Close();
+            } else if (chooseTest == "contact")
+            {
+                List<ContactData> contacts = new List<ContactData>();
+                for (int i = 0; i < count; i++)
+                {
+                    contacts.Add(new ContactData(TestBase.GenerateRandomString(10))
+                    {
+                        Lastname = TestBase.GenerateRandomString(100),
+                        Firstname = TestBase.GenerateRandomString(100)
+                    });
+                }
+                if (format == "csv")
+                {
+                    writeContactToCsvFile(contacts, writer);
+                }
+                else if (format == "xml")
+                {
+                    writeContactToXmlFile(contacts, writer);
+                }
+                else
+                {
+                    System.Console.Out.Write("Unrecognized format" + format);
+                }
+                writer.Close();
+            }
         }
         static void writeGroupsToCsvFile(List<GroupData> groups, StreamWriter writer)
         {
@@ -44,6 +73,19 @@ namespace Generate_data_webaddresbook
             }
         }
 
+        static void writeContactToCsvFile(List<ContactData> contacts, StreamWriter writer)
+        {
+            foreach (ContactData contact in contacts)
+            {
+                writer.WriteLine(string.Format("${0},${1}",
+               contact.Firstname,contact.Middlename));
+            }
+        }
+
+        static void writeContactToXmlFile(List<ContactData> contacts, StreamWriter writer)
+        {
+            new XmlSerializer(typeof(List<ContactData>)).Serialize(writer, contacts);
+        }
         static void writeGroupsToXmlFile(List<GroupData> groups, StreamWriter writer)
         {
             new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);

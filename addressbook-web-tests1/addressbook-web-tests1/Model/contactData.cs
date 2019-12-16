@@ -21,6 +21,10 @@ namespace WebAddressbookTest
             this.Lastname = lastname;
         }
 
+        public ContactData(string v)
+        {
+        }
+
         public bool Equals(ContactData other)
         {
             if (object.ReferenceEquals(other, null))
