@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WebAddressbookTest
 {
@@ -41,11 +42,15 @@ namespace WebAddressbookTest
 
         }
 
-        [Test,TestCaseSource("ContactDataFromXmlFile")]
+        public static IEnumerable<ContactData> ContactDataFromJSONFile()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(File.ReadAllText(@"contact.json"));
+
+        }
+
+        [Test,TestCaseSource("ContactDataFromJSONFile")]
         public void ContactCreatingTest(ContactData contact)
         {
-            
-
             List<ContactData> OldContacts = app.Contacts.GetContactList();
             app.Contacts.CreateContact(contact);
             

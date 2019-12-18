@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-
+using Newtonsoft.Json;
 namespace Generate_data_webaddresbook
 {
     class Program
@@ -23,8 +23,8 @@ namespace Generate_data_webaddresbook
                 {
                     groups.Add(new GroupData(TestBase.GenerateRandomString(10))
                     {
-                        Header = TestBase.GenerateRandomString(100),
-                        Footer = TestBase.GenerateRandomString(100)
+                        Header = TestBase.GenerateRandomString(20),
+                        Footer = TestBase.GenerateRandomString(20)
                     });
                 }
                 if (format == "csv")
@@ -33,6 +33,9 @@ namespace Generate_data_webaddresbook
                 } else if (format == "xml")
                 {
                     writeGroupsToXmlFile(groups, writer);
+                } else if (format == "json")
+                {
+                    writeGroupsToJSONFile(groups, writer);
                 } else
                 {
                     System.Console.Out.Write("Unrecognized format" + format);
@@ -45,8 +48,8 @@ namespace Generate_data_webaddresbook
                 {
                     contacts.Add(new ContactData(TestBase.GenerateRandomString(10))
                     {
-                        Lastname = TestBase.GenerateRandomString(100),
-                        Firstname = TestBase.GenerateRandomString(100)
+                        Lastname = TestBase.GenerateRandomString(20),
+                        Firstname = TestBase.GenerateRandomString(20)
                     });
                 }
                 if (format == "csv")
@@ -56,6 +59,9 @@ namespace Generate_data_webaddresbook
                 else if (format == "xml")
                 {
                     writeContactToXmlFile(contacts, writer);
+                }else if (format == "json")
+                {
+                    writeontactToJSONFile(contacts, writer);
                 }
                 else
                 {
@@ -89,6 +95,15 @@ namespace Generate_data_webaddresbook
         static void writeGroupsToXmlFile(List<GroupData> groups, StreamWriter writer)
         {
             new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);
+        }
+
+        static void writeGroupsToJSONFile(List<GroupData> groups, StreamWriter writer)
+        {
+            writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));
+        }
+        static void writeontactToJSONFile(List<ContactData> contacts, StreamWriter writer)
+        {
+            writer.Write(JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented));
         }
     }
 }
