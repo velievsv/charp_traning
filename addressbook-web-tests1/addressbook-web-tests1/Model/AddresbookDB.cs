@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using LinqToDB;
+using System.Configuration;
 
 namespace WebAddressbookTest
 {
-    class AddressBookDB : LinqToDB.Data.DataConnection
+    public class AddressBookDB : LinqToDB.Data.DataConnection
     {
         public AddressBookDB() : base("addressbook") { }
 
